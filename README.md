@@ -117,3 +117,8 @@ This repository intentionally does **not** contain:
 ## License
 
 Product Data Studio Pro is proprietary software. See [LICENSE.md](LICENSE.md).
+
+
+## Architecture
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for a high-level product architecture overview.
