@@ -3,111 +3,122 @@
 Product Data Studio Pro is a Windows desktop application for preparing
 e-commerce product catalogs.
 
-> This document describes the product at a high level. The application is
-> proprietary, and the complete internal source architecture is maintained in a
-> private repository.
+> This document contains a high-level public architecture only. The complete
+> implementation remains in a private repository.
 
 ## High-level architecture
 
-```text
-Windows Desktop Interface
-    ↓
-Catalog Workflow Services
-    ↓
-Validation and Transformation Engine
-    ↓
-Local Catalog Data
-    ↓
-Excel / CSV / JSON / ZIP output
+```mermaid
+flowchart TD
+    UI[Windows Desktop Interface]
+    SERVICES[Catalog Workflow Services]
+    ENGINE[Validation and Transformation Engine]
+    DATA[Local Catalog Data]
+    OUTPUT[Excel / CSV / JSON / ZIP Output]
+
+    UI --> SERVICES
+    SERVICES --> ENGINE
+    ENGINE --> DATA
+    DATA --> OUTPUT
 ```
 
-## Main components
+## Main product components
 
-### Desktop interface
+```mermaid
+flowchart LR
+    APP[Product Data Studio Pro]
 
-The interface provides:
+    APP --> IMPORT[Excel / CSV Import]
+    APP --> VALIDATE[Catalog Validation]
+    APP --> TRANSFORM[Transformation Recipes]
+    APP --> COMPARE[Catalog Comparison]
+    APP --> MERGE[Supplier Update Merge]
+    APP --> BATCH[Batch Workflows]
+    APP --> MARKET[Marketplace Export]
+    APP --> LANG[English / Russian Interface]
+```
 
-- Excel and CSV import;
-- column mapping;
-- catalog preview;
-- issue review;
-- guided fixes;
-- batch workflows;
-- English and Russian language selection;
-- export tools.
+## Catalog workflow
 
-### Catalog workflow services
+```mermaid
+flowchart TD
+    FILE[Excel or CSV Catalog]
+    MAP[Column Mapping]
+    CLEAN[Cleaning]
+    VALIDATE[Validation]
+    FIX[Guided Fixes]
+    EXPORT[Marketplace Export]
 
-Workflow services coordinate:
+    FILE --> MAP
+    MAP --> CLEAN
+    CLEAN --> VALIDATE
+    VALIDATE --> FIX
+    FIX --> EXPORT
+```
 
-- cleaning;
-- validation;
-- comparison;
-- merging;
-- splitting;
-- combining;
-- transformation recipes;
-- batch processing;
-- marketplace publishing.
+## Validation model
 
-### Validation engine
+```mermaid
+flowchart LR
+    ENGINE[Validation Engine]
+    STANDARD[Standard Checks]
+    SMART[Smart Validation]
+    CUSTOM[Custom Rules]
 
-The validation engine performs:
+    ENGINE --> STANDARD
+    ENGINE --> SMART
+    ENGINE --> CUSTOM
+```
 
-- structural checks;
-- duplicate SKU detection;
-- price and category checks;
-- image URL checks;
-- smart detection of suspicious values;
-- user-defined validation rules.
+The application can detect missing product data, duplicate SKUs, invalid prices,
+invalid image URLs, suspicious values, and values copied into the wrong columns.
 
-### Transformation engine
+## Batch processing
 
-Transformation recipes support reusable operations such as:
+```mermaid
+flowchart LR
+    FILES[Multiple Catalogs]
+    AUDIT[Batch Audit]
+    REPAIR[Batch Repair]
+    REVIEW[Manual Review]
+    PUBLISH[Batch Publish]
 
-- whitespace normalization;
-- text case conversion;
-- prefix and suffix creation;
-- find and replace;
-- numeric calculations;
-- rounding;
-- copying and combining columns.
-
-### Marketplace exporters
-
-The application creates customer-reviewable files for:
-
-- Shopify;
-- WooCommerce.
-
-Products with blocking issues can be excluded into separate review reports.
+    FILES --> AUDIT
+    AUDIT --> REPAIR
+    REPAIR --> REVIEW
+    REVIEW --> PUBLISH
+```
 
 ## Local-first processing
 
-Product Data Studio Pro uses a local-first design:
+```mermaid
+flowchart TD
+    INPUT[Catalog File]
+    LOCAL[Local Windows Processing]
+    OUTPUT[User-selected Output Folder]
 
-```text
-Catalog file
-    ↓
-Processing on the user’s Windows computer
-    ↓
-User-selected output folder
+    INPUT --> LOCAL
+    LOCAL --> OUTPUT
 ```
 
-The application does not require catalog files to be uploaded to an external
-service.
+Catalog files are processed on the user's Windows computer. The application does
+not require catalog data to be uploaded to an external service.
 
 ## Windows distribution
 
-The commercial version is distributed as:
+```mermaid
+flowchart LR
+    ZIP[Customer ZIP]
+    SETUP[ProductDataStudioPro_Setup.exe]
+    INSTALL[Windows Installation]
+    APP[Product Data Studio Pro]
 
-```text
-Product_Data_Studio_Pro_2.2.0.zip
-└── ProductDataStudioPro_Setup.exe
+    ZIP --> SETUP
+    SETUP --> INSTALL
+    INSTALL --> APP
 ```
 
-The Windows application is packaged using PyInstaller and installed using Inno
-Setup. Customers do not need Python or PyCharm.
+Customers do not need Python or PyCharm.
 
 ## Technology
 
@@ -120,26 +131,22 @@ Setup. Customers do not need Python or PyCharm.
 
 ## Repository separation
 
-### Private repository
+```mermaid
+flowchart TD
+    PRODUCT[Product Data Studio Pro]
 
-Contains:
+    PRODUCT --> PRIVATE[Private Repository]
+    PRODUCT --> PUBLIC[Public Showcase]
 
-- full source code;
-- tests;
-- build scripts;
-- installer configuration;
-- internal release materials.
+    PRIVATE --> P1[Full Source Code]
+    PRIVATE --> P2[Tests and Build Scripts]
+    PRIVATE --> P3[Installer Configuration]
 
-### Public showcase repository
+    PUBLIC --> U1[README and Documentation]
+    PUBLIC --> U2[Screenshots]
+    PUBLIC --> U3[Privacy and System Requirements]
+    PUBLIC --> U4[Gumroad Link]
+```
 
-Contains only:
-
-- product overview;
-- feature documentation;
-- architecture overview;
-- screenshots;
-- privacy information;
-- system requirements;
-- Gumroad link.
-
-The public showcase does not contain source code or paid distribution files.
+The public showcase does not contain source code, EXE files, or paid customer
+downloads.
