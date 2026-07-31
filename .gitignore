@@ -1,0 +1,57 @@
+# Public showcase only
+
+# Never publish proprietary source code
+app.py
+core/
+tests/
+config/
+installer/
+release_docs/
+gumroad/
+*.py
+*.pyw
+*.spec
+requirements*.txt
+build_*.bat
+BUILD_*.bat
+run*.bat
+verify_release.py
+version_info.txt
+
+# Never publish builds or paid downloads
+build/
+dist/
+release_output/
+gumroad_delivery/
+*.exe
+*.msi
+*.msix
+*.zip
+
+# Secrets and local settings
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+credentials*.json
+secrets*.json
+license_keys*.json
+github_token*
+gumroad_access_token*
+
+# Local development
+.venv/
+venv/
+.idea/
+.vscode/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
