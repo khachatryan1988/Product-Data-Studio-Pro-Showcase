@@ -119,6 +119,18 @@ This repository intentionally does **not** contain:
 Product Data Studio Pro is proprietary software. See [LICENSE.md](LICENSE.md).
 
 
-## Architecture
+## Documentation
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for a high-level product architecture overview.
+### User Guide
+
+Detailed instructions for installing and using Product Data Studio Pro in English and Russian.
+
+[Download User Guide — English / Русский](docs/pdf/User_Guide_EN_RU.pdf)
+
+### Architecture
+
+High-level overview of the application architecture, catalog workflows, validation engine, batch processing, and Windows distribution.
+
+[Download Architecture Overview — English / Русский](docs/pdf/Architecture_EN_RU.pdf)
+
+[View interactive Mermaid diagrams](ARCHITECTURE.md)
